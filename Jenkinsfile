@@ -1,11 +1,6 @@
 
 pipeline {
-    agent any
-
-    tools {
-        maven 'maven-3.6.3'
-        jdk 'jdk8'
-    }
+    agent { dockerfile true }
 
     stages {
         stage('Build') {
@@ -13,5 +8,10 @@ pipeline {
                sh 'mvn -B -DskipTests clean package'
             }
         }
-    }
+        stage('Test') {
+            steps {
+                sh 'node --version'
+                sh 'svn --version'
+           }
+        }
 }
