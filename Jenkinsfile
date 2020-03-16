@@ -19,7 +19,7 @@ pipeline {
            steps {
               sh 'mvn test'
            }
-       }
+       } 
     stage('Building image') {
       steps{
         script {
