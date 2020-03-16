@@ -5,24 +5,19 @@ pipeline {
     dockerImage = ''
   }
   agent any
+  tools {
+      maven 'maven-3.6.3'
+      jdk 'jdk8'
+   }
   stages {
     stage('Cloning Git') {
       steps {
         git 'https://github.com/walterrx/hotelbackend.git'
       }
     }
-    stage('Maven Install') {
-      agent {
-        docker {
-          image 'maven:3.6.3'
-        }
-      }
-      steps {
-        sh 'mvn clean install'
-      }
-    }
     stage('Building image') {
       steps{
+         sh 'mvn test'
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
