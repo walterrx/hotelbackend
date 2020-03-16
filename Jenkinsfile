@@ -15,9 +15,13 @@ pipeline {
         git 'https://github.com/walterrx/hotelbackend.git'
       }
     }
+   stage('Build Maven') {
+           steps {
+              sh 'mvn test'
+           }
+       }
     stage('Building image') {
       steps{
-         sh 'mvn test'
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
