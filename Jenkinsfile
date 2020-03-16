@@ -1,7 +1,4 @@
 pipeline {
- agent {
-      docker { image docker.build registry + ":$BUILD_NUMBER" }
-  }
   environment {
     registry = "walterrx/hotelmsa"
     registryCredential = 'docker-hub-credentials'
@@ -31,7 +28,7 @@ pipeline {
       }
      stage('Test') {
           steps {
-              sh 'node --version'
+              dockerImage.run()
           }
       }
     }
