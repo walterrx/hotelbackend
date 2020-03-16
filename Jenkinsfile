@@ -20,7 +20,7 @@ pipeline {
     }
    stage('Build Maven') {
            steps {
-              sh 'mvn package -DskipTests'
+              sh 'mvn test'
            }
        } 
     stage('Building image') {
