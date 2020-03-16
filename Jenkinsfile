@@ -1,3 +1,6 @@
+def CONTAINER_NAME = "springboot-msa-hotel"
+def COINTAINER_TAG = "latest"
+
 pipeline {
   environment {
     registry = "walterrx/hotelmsa"
@@ -42,5 +45,11 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"    
       }
     }
+     stage('Run App') {
+         steps {
+            sh 'docker pull walterrx/hotelmsa'
+            sh "docker run -d --rm -p 8090:8090 --name hotelmsa walterrx/hotelmsa:latest"
+         }
+     } 
   }
 }
