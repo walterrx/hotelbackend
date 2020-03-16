@@ -23,7 +23,7 @@ pipeline {
     
    stage('Build Maven') {
            steps {
-              sh 'mvn -T 10 clean package'
+              sh 'mvn package -DskipTests'
            }
        } 
     stage('Building image') {
