@@ -15,6 +15,12 @@ pipeline {
         git 'https://github.com/walterrx/hotelbackend.git'
       }
     }
+    stage('Execute Docker Mongo') {
+      steps {
+        sh 'free -m'
+      }
+    }
+    
    stage('Build Maven') {
            steps {
               sh 'mvn clean install -DskipTests=true'
