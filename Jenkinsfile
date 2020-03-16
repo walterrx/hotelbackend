@@ -11,6 +11,16 @@ pipeline {
         git 'https://github.com/walterrx/hotelbackend.git'
       }
     }
+    stage('Maven Install') {
+      agent {
+        docker {
+          image 'maven:3.6.3'
+        }
+      }
+      steps {
+        sh 'mvn clean install'
+      }
+    }
     stage('Building image') {
       steps{
         script {
