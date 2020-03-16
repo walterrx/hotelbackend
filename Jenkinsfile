@@ -48,7 +48,7 @@ pipeline {
      stage('Run App') {
          steps {
             sh 'docker pull walterrx/hotelmsa'
-            sh "docker run -d --rm -p 8090:8090 --name hotelmsa walterrx/hotelmsa:latest"
+            sh "docker run -d --rm -p 8090:8090 --name hotelmsa $registry:$BUILD_NUMBER"
          }
      } 
   }
