@@ -15,19 +15,6 @@ pipeline {
         git 'https://github.com/walterrx/hotelbackend.git'
       }
     }
-    stage('Sonarqube') {
-    environment {
-        scannerHome = tool 'LocalSonarScanner'
-    }
-    steps {
-        withSonarQubeEnv('sonarqube') {
-            sh "${scannerHome}/bin/sonar-scanner"
-        }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-    }
-}
    stage('Build Maven') {
            steps {
               sh 'mvn package -DskipTests'
