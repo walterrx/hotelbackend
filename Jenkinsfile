@@ -26,11 +26,6 @@ pipeline {
           }
         }
       }
-     stage('Test') {
-          steps {
-              dockerImage.run()
-          }
-      }
     }
   }
 }
